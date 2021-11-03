@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    font-family: '標楷體';
+  }
+
+  .container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container p {
+    writing-mode: vertical-lr;
+    font-size: 43px;
+    margin: 30px;
+  }
+
+  .chessboard {
+    width: 800px;
+    height: 825px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    margin: 0;
+  }
+
+  .row {
+    display: flex;
+  }
+
+  .grid {
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .row:nth-child(1) .grid:nth-child(4):before {
+    content: "";
+    width: 228px;
+    height: 1px;
+    background: black;
+    position: absolute;
+    top: 130px;
+    left: 287px;
+    transform: rotate(45deg);
+  }
+
+  .row:nth-child(1) .grid:nth-child(4):after {
+    content: "";
+    width: 228px;
+    height: 1px;
+    background: black;
+    position: absolute;
+    top: 130px;
+    left: 286px;
+    transform: rotate(135deg);
+  }
+
+  .row:nth-child(8) .grid:nth-child(4)::before {
+    content: "";
+    width: 228px;
+    height: 1px;
+    background: black;
+    position: absolute;
+    bottom: 128px;
+    left: 286px;
+    transform: rotate(45deg);
+  }
+
+  .row:nth-child(8) .grid:nth-child(4):after {
+    content: "";
+    width: 228px;
+    height: 1px;
+    background: black;
+    position: absolute;
+    bottom: 128px;
+    left: 286px;
+    transform: rotate(135deg);
+  }
+
+  .row:nth-child(9) .grid {
+    border-bottom: 1px solid black;
+  }
+
+  .grid:nth-child(8) {
+    border-right: 1px solid black;
+  }
+
+  .river {
+    width: 647px;
+    height: 80px;
+    border: 1px solid black;
+    border-bottom: 0;
+
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .container .river p {
+    font-size: 3rem;
+    margin: 15px;
+  }
+
+  .chess-all {
+    width: 89%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .chess-row {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .chess-row:nth-child(1),
+  .chess-row:nth-child(4),
+  .chess-row:nth-child(7),
+  .chess-row:nth-child(10) {
+    justify-content: space-between;
+  }
+
+  .chess-row:nth-child(3),
+  .chess-row:nth-child(8) {
+    justify-content: space-around;
+  }
+
+  .chess {
+    width: 60px;
+    height: 60px;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .chess-disappear {
+    width: 60px;
+    height: 60px;
+    display: flex;
+  }
+
+  .chess p {
+    font-size: 2.5rem;
+  }
+
+  .chess-row:nth-child(7) p,
+  .chess-row:nth-child(8) p,
+  .chess-row:nth-child(10) p {
+    color: rgb(220, 0, 0);
+  }
+</style>
+
+<body>
+  <div class="container">
+    <p>棋盤裡，車無輪，馬無韁，叫聲將軍提防提防</p>
+    <div class="chessboard">
+      <div class="row">
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+      </div>
+
+      <div class="row">
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+      </div>
+
+      <div class="row">
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+      </div>
+
+      <div class="row">
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+      </div>
+
+      <div class="row">
+        <div class="river">
+          <p>楚河</p>
+          <p>漢界</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+      </div>
+
+      <div class="row">
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+      </div>
+
+      <div class="row">
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+      </div>
+
+      <div class="row">
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+      </div>
+
+      <div class="chess-all">
+
+        <div class="chess-row">
+          <div class="chess">
+            <p>車</p>
+          </div>
+          <div class="chess">
+            <p>馬</p>
+          </div>
+          <div class="chess">
+            <p>象</p>
+          </div>
+          <div class="chess">
+            <p>士</p>
+          </div>
+          <div class="chess">
+            <p>將</p>
+          </div>
+          <div class="chess">
+            <p>士</p>
+          </div>
+          <div class="chess">
+            <p>象</p>
+          </div>
+          <div class="chess">
+            <p>馬</p>
+          </div>
+          <div class="chess">
+            <p>車</p>
+          </div>
+        </div>
+
+        <div class="chess-row"> </div>
+
+        <div class="chess-row">
+          <div class="chess">
+            <p>包</p>
+          </div>
+
+          <div class="chess-disappear">
+          </div>
+
+          <div class="chess">
+            <p>包</p>
+          </div>
+        </div>
+
+        <div class="chess-row">
+          <div class="chess">
+            <p>卒</p>
+          </div>
+          <div class="chess">
+            <p>卒</p>
+          </div>
+          <div class="chess">
+            <p>卒</p>
+          </div>
+          <div class="chess">
+            <p>卒</p>
+          </div>
+          <div class="chess">
+            <p>卒</p>
+          </div>
+        </div>
+
+        <div class="chess-row"></div>
+        <div class="chess-row"></div>
+
+        <div class="chess-row">
+          <div class="chess">
+            <p>兵</p>
+          </div>
+          <div class="chess">
+            <p>兵</p>
+          </div>
+          <div class="chess">
+            <p>兵</p>
+          </div>
+          <div class="chess">
+            <p>兵</p>
+          </div>
+          <div class="chess">
+            <p>兵</p>
+          </div>
+        </div>
+
+        <div class="chess-row">
+          <div class="chess">
+            <p>炮</p>
+          </div>
+
+          <div class="chess-disappear">
+          </div>
+
+          <div class="chess">
+            <p>炮</p>
+          </div>
+        </div>
+
+
+        <div class="chess-row"></div>
+
+        <div class="chess-row">
+          <div class="chess">
+            <p>俥</p>
+          </div>
+          <div class="chess">
+            <p>傌</p>
+          </div>
+          <div class="chess">
+            <p>相</p>
+          </div>
+          <div class="chess">
+            <p>仕</p>
+          </div>
+          <div class="chess">
+            <p>帥</p>
+          </div>
+          <div class="chess">
+            <p>仕</p>
+          </div>
+          <div class="chess">
+            <p>相</p>
+          </div>
+          <div class="chess">
+            <p>傌</p>
+          </div>
+          <div class="chess">
+            <p>俥</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <p>圖畫裡，龍不吟，虎不嘯，小小書僮可笑可笑</p>
+  </div>
+
+</body>
+
+</html>
